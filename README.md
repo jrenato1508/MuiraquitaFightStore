@@ -18,6 +18,8 @@ E-comerce de vendas de materiais esportivos.
 * DDD
 * Domain Model Pattern
 * CRQS
+* Arquitetura baseada em eventos
+* Mediatr
 * Razor pages
 * FluentValidation
 * FluentApi
