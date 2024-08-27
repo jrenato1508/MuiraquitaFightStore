@@ -1,0 +1,27 @@
+﻿@{
+    ViewData["Title"] = "DEU CERTO!";
+}
+<h1>@ViewData["Title"]</h1>
+
+<p>SEGREDO SECRETO.</p>
+<div supress-by-claim-value="Moderator">
+
+    <p>Somente o Usuário de Moderator pode mexer nos botões </p>
+</div>
+<td class="text-lg-end">
+    @* <a class="btn btn-info" asp-controller="UserRoles" supress-by-claim-value="Basic" asp-action="ChangePassword" asp-route-userId="@user.UserId">Nova Senha</a> *@
+    <a class="btn btn-info" asp-controller="UserRoles" disable-by-claim-value="Moderator" asp-action="ChangePassword">Nova Senha</a>
+    <a class="btn btn-primary" asp-controller="UserRoles" disable-by-claim-value="Moderator" asp-action="Manage">Editar</a>
+    <a class="btn btn-danger" asp-controller="UserRoles" disable-by-claim-value="Moderator" asp-action="ExcluirUsuario">Excluir</a>
+</td>
+<hr/>
+<div supress-by-claim-value="SuperAdmin">
+    <p>Você tem permissão para visualizar esse mensagem</p>
+</div>
+
+<td class="text-lg-end">
+    @* <a class="btn btn-info" asp-controller="UserRoles" supress-by-claim-value="Basic" asp-action="ChangePassword" asp-route-userId="@user.UserId">Nova Senha</a> *@
+    <a class="btn btn-info" asp-controller="UserRoles" supress-by-claim-value="SuperAdmin" asp-action="ChangePassword">Nova Senha</a>
+    <a class="btn btn-primary" asp-controller="UserRoles" supress-by-claim-value="SuperAdmin" asp-action="Manage">Editar</a>
+    <a class="btn btn-danger" asp-controller="UserRoles" supress-by-claim-value="SuperAdmin" asp-action="ExcluirUsuario">Excluir</a>
+</td>

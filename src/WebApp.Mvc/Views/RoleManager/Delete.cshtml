@@ -1,0 +1,20 @@
+﻿@model Microsoft.AspNetCore.Identity.IdentityRole
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Excluir Role</h1>
+
+<p>Você tem certeza que deseja excluir a role <strong>@Model.Name</strong> ?</p>
+<div>
+    
+    <dl class="row">
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> 
+        <a class="btn btn-dark" asp-action="Index">Voltar</a>
+    </form>
+</div>

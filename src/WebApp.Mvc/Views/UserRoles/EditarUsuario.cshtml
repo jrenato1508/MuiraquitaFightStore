@@ -1,0 +1,59 @@
+﻿@using WebApp.Mvc.Models.UserManagementPanelModels
+@model EditeUserViewModel
+@{
+    ViewData["Title"] = "Alterar Usuário";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+
+            
+            <div class="form-floating mb-3">
+                <input asp-for="FirstName" class="form-control" autocomplete="new-password" aria-required="true" placeholder="Please confirm your password." />
+                <label asp-for="FirstName" class="form-label"></label>
+                <span asp-validation-for="FirstName" class="text-danger"></span>
+            </div>
+
+            <div class="form-floating mb-3">
+                <input asp-for="LastName" class="form-control" autocomplete="new-password" aria-required="true" placeholder="Please confirm your password." />
+                <label asp-for="LastName" class="form-label"></label>
+                <span asp-validation-for="LastName" class="text-danger"></span>
+            </div>
+
+            <div class="form-floating mb-3">
+                <input asp-for="Email" class="form-control" autocomplete="new-password" aria-required="true" placeholder="Please confirm your password." />
+                <label asp-for="Email" class="form-label"></label>
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+
+            <hr />
+
+            <h3>Perfil Usuário</h3>
+            <div class="card-body">
+                @for (int i = 0; i < Model.Perfils.Count; i++)
+                {
+                    <div class="form-check m-1">
+                        <input type="hidden" asp-for="@Model.Perfils[i].RoleId" />
+                        <input type="hidden" asp-for="@Model.Perfils[i].RoleName" />
+                        <input asp-for="@Model.Perfils[i].Selected" class="form-check-input" />
+                        <label class="form-check-label" asp-for="@Model.Perfils[i].Selected">
+                            @Model.Perfils[i].RoleName
+                        </label>
+                    </div>
+                }
+
+                                <!--BOTÃO-->
+            <div>
+                <input type="hidden" asp-for="@Model.UsuarioID" />
+                <input type="submit" value="Salvar" class="btn btn-success" style="width:auto" />
+                <a class="btn btn-dark" asp-action="Index">Voltar</a>
+            </div>
+        </form>
+        
+    </div>
+</div>

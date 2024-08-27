@@ -1,0 +1,208 @@
+﻿@page
+@model RegisterModel
+@{
+    // ViewData["Title"] = "Register";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+@* <div class="row">
+    <div class="col-md-4">
+        <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
+            <h2>Create a new account.</h2>
+            <hr />
+            <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+            <div class="form-floating mb-3">
+                <input asp-for="Input.FirstName" class="form-control" autocomplete="FirstName" aria-required="true" placeholder="First Name" />
+                <label asp-for="Input.FirstName"></label>
+                <span asp-validation-for="Input.FirstName" class="text-danger"></span>
+            </div>
+            <div class="form-floating mb-3">
+                <input asp-for="Input.LastName" class="form-control" autocomplete="LastName" aria-required="true" placeholder="Last Name" />
+                <label asp-for="Input.LastName"></label>
+                <span asp-validation-for="Input.LastName" class="text-danger"></span>
+            </div>
+            <div class="form-floating mb-3">
+                <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" placeholder="name@example.com" />
+                <label asp-for="Input.Email">Email</label>
+                <span asp-validation-for="Input.Email" class="text-danger"></span>
+            </div>
+            <div class="form-floating mb-3">
+                <input asp-for="Input.Password" class="form-control" autocomplete="new-password" aria-required="true" placeholder="password" />
+                <label asp-for="Input.Password">Password</label>
+                <span asp-validation-for="Input.Password" class="text-danger"></span>
+            </div>
+            <div class="form-floating mb-3">
+                <input asp-for="Input.ConfirmPassword" class="form-control" autocomplete="new-password" aria-required="true" placeholder="password" />
+                <label asp-for="Input.ConfirmPassword">Confirm Password</label>
+                <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+            </div>
+            <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary">Register</button>
+        </form>
+    </div>
+    <div class="col-md-6 col-md-offset-2">
+        <section>
+            <h3>Use another service to register.</h3>
+            <hr />
+            @{
+                if ((Model.ExternalLogins?.Count ?? 0) == 0)
+                {
+                    <div>
+                        <p>
+                            There are no external authentication services configured. See this <a href="https://go.microsoft.com/fwlink/?LinkID=532715">article
+                            about setting up this ASP.NET application to support logging in via external services</a>.
+                        </p>
+                    </div>
+                }
+                else
+                {
+                    <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
+                        <div>
+                            <p>
+                                @foreach (var provider in Model.ExternalLogins!)
+                                {
+                                    <button type="submit" class="btn btn-primary" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
+                                }
+                            </p>
+                        </div>
+                    </form>
+                }
+            }
+        </section>
+    </div>
+</div> *@
+
+@* <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"> *@
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+<style>
+    body{
+        background-color:black;
+    }
+
+    modal-dialog {
+        border-radius: 10px;
+    }
+
+    .modal-body {
+        
+        background-color: #343a40 !important
+
+    }
+
+    label{
+        color: white;
+        font-family: sans-serif;
+        padding-bottom: 5px;
+    }
+    
+    h2{
+        color: white;
+        text-align:center;
+        padding-bottom:10px;
+        
+    }
+
+    
+
+</style>
+<body background="./images/pattern2.jpg">
+    
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <div id="login-overlay" class="modal-dialog">
+        <div class="modal-content">
+            
+            <div class="modal-body">
+                <h2>Formulário de Registro</h2>
+                <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+                <form id="registerForm" method="POST">
+                    <div class="form-group">
+                        <div class="col-xs-6">
+                            <label for="InputName"> Nome</label>
+                            <div class="input-group">
+                                <input asp-for="Input.FirstName" type="text" class="form-control"  placeholder="Digite seu Nome" required />
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span><br />
+                                <span asp-validation-for="Input.FirstName" class="text-danger"></span>
+                            </div>
+                            <br>
+                            <label for="InputName">Sobrenome</label>
+                            <div class="input-group">
+                                <input asp-for="Input.LastName" type="text" class="form-control" placeholder="Digite seu Sobrenome" required>
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
+                                <span asp-validation-for="Input.LastName" class="text-danger"></span>
+                            </div>
+                            <!--------------------------------------separator---------------------------------------------------------------> <hr>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-xs-12">
+                            <label for="InputEmail">E-Mail</label>
+                            <div class="input-group">
+                                <input asp-for="Input.Email" type="email" class="form-control"  placeholder="Digite seu E-mail" required>
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
+                                <span asp-validation-for="Input.Email" class="text-danger"></span>
+                            </div>
+                            
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-xs-6">
+                            <br>
+                            <label for="InputPassword">Senha</label>
+                            <div class="input-group">
+                                <input asp-for="Input.Password" type="password" class="form-control"  placeholder="Digite sua Senha" required>
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
+                                <span asp-validation-for="Input.Password" class="text-danger"></span>
+                            </div>
+                            <br />
+                            <label for="InputPassword">Confirmar Senha</label>
+                            <div class="input-group">
+                                <input asp-for="Input.ConfirmPassword" type="password" class="form-control"  placeholder="Confirme sua Senha" required>
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
+                                <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+                            </div>
+                            <!--------------------------------------separator---------------------------------------------------------------> <hr>
+                        </div>
+                    </div>
+
+                    
+                                     
+                    
+                    <div class="form-group">
+                        <div class="input-group-addon">
+                            <input type="submit" name="submit" id="submit" value="Registrar" class="btn btn-outline-success pull-right">
+
+                        </div>
+                    </div>
+                </form>
+
+                
+
+            </div><!---modal-body--->
+        </div>
+    </div>
+
+
+    <script type="text/javascript">
+
+    </script>
+</body>
+
+
+
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+
+
+
+@* conferir no link : https://bootsnipp.com/tags/registration?page=5
+
+user registration bootstrap templates
+*@

@@ -1,0 +1,40 @@
+﻿@* @model Microsoft.AspNetCore.Identity.IdentityUser *@
+@using WebApp.Mvc.Models.UserManagementPanelModels
+@model ApplicationUser
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Excluir Usuário</h1>
+
+<p>Você tem certeza que deseja excluir o usuário <strong>@Model.FirstName</strong> ?</p>
+<div>
+
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.UserName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.UserName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.LastName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.LastName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+        <dd>
+            @Html.DisplayFor(mode => Model.Email)
+        </dd>
+    </dl>
+
+    <form asp-action="ExcluirUsuario">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Delete" class="btn btn-danger" />
+        <a class="btn btn-dark" asp-action="Index">Voltar</a>
+    </form>
+</div>
