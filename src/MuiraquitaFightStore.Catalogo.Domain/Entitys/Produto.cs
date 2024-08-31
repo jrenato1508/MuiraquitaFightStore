@@ -1,4 +1,6 @@
-﻿using MuiraquitaFightStore.Core.DomainObject;
+﻿using MuiraquitaFightStore.Catalogo.Domain.ValueObject;
+using MuiraquitaFightStore.Core.DomainObject;
+using MuiraquitaFightStore.Core.DomainObject.AssertionConcem;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,11 +19,12 @@ namespace MuiraquitaFightStore.Catalogo.Domain.Entitys
         public DateTime DataCadastro { get; private set; }
         public string Imagem { get; private set; }
         public int QuantidadeEstoque { get; private set; }
-        public string tamanho { get; private set; }
-        //public Dimensoes Dimensoes { get; private set; }
+        public string Cor { get; set; }
+        public Tamanho Tamanho { get; private set; }
         public Categoria Categoria { get; private set; }
 
-        public Produto(string nome, string descricao, bool ativo, decimal valor, Guid categoriaId, DateTime datacadastro, string imagem)
+
+        public Produto(string nome, string descricao, bool ativo, decimal valor, Guid categoriaId, DateTime datacadastro, string imagem, Tamanho tamanho )
         {
             CategoriaId = categoriaId;
             Nome = nome;
@@ -30,8 +33,9 @@ namespace MuiraquitaFightStore.Catalogo.Domain.Entitys
             Valor = valor;
             DataCadastro = datacadastro;
             Imagem = imagem;
+            Tamanho = tamanho;
 
-            //Validar();
+            Validar();
         }
 
         protected Produto(){}
@@ -65,5 +69,13 @@ namespace MuiraquitaFightStore.Catalogo.Domain.Entitys
         }
 
 
+        private void Validar()
+        {
+            Validacoes.ValidarSeVazio(Nome, "O campo Nome do produto não pode estar vazio");
+            Validacoes.ValidarSeVazio(Descricao, "O campo Descrição do produto não pode estar vazio");
+            Validacoes.ValidarSeIgual(CategoriaId, Guid.Empty, "O campo Categoria do produto não pode estar vazio");
+            Validacoes.ValidarSeMenorQue(Valor, 1, "O campo Valor do produto não pode se menor igual a 0");
+            Validacoes.ValidarSeVazio(Imagem, "O campo de imagem do produto não pode estar vazio");
+        }
     }
 }

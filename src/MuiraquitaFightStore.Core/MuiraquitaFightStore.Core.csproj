@@ -7,7 +7,6 @@
 
   <ItemGroup>
     <Folder Include="Communication\Mediator\" />
-    <Folder Include="Data\" />
     <Folder Include="DomainObject\DTO\" />
     <Folder Include="Extensions\" />
     <Folder Include="Messages\CommonMessages\" />

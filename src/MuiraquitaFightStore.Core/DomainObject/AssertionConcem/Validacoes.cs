@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
+using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -93,6 +95,69 @@ namespace MuiraquitaFightStore.Core.DomainObject.AssertionConcem
         }
 
 
-        // Parei no ValidarMinimoMaximo
+        public static void ValidarMinimoMaximo(long valor, long minimo, long maximo, string mensagem)
+        {
+            if (valor < minimo || valor > maximo)
+            {
+                throw new DomainException(mensagem);
+            }
+        }
+
+
+        public static void ValidarMinimoMaximo(decimal valor, decimal minimo, decimal maximo, string mensagem)
+        {
+            if (valor < minimo || valor > maximo)
+            {
+                throw new DomainException(mensagem);
+            }
+        }
+
+
+        public static void ValidarSeMenorQue(long valor, long minimo, string mensagem)
+        {
+            if(valor < minimo)
+            {
+                throw new DomainException(mensagem);
+            }
+        }
+
+
+        public static void ValidarSeMenorQue(decimal valor, decimal minimo, string mensagem)
+        {
+            if (valor < minimo)
+            {
+                throw new DomainException(mensagem);
+            }
+        }
+
+
+        public static void ValidarSeMenorQue(int valor, int minimo, string mensagem)
+        {
+            if (valor < minimo)
+            {
+                throw new DomainException(mensagem);
+            }
+        }
+
+
+        public static void ValidarSeFalso(bool boovalor, string mensagem)
+        {
+            if (!boovalor)
+            {
+                throw new DomainException(mensagem);
+            }
+        }
+
+
+        public static void ValidarSeVerdadeiro(bool boovalor, string mensagem)
+        {
+            if (boovalor)
+            {
+                throw new DomainException(mensagem);
+            }
+        }
+
+
+        
     }
 }
