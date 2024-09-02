@@ -33,10 +33,14 @@ namespace MuiraquitaFightStore.Catalogo.Data.Mappings
                     .HasColumnName("Tamanho")
                     .HasColumnType("Varchar(100)");
 
-                cm.Property(c => c.TamanhoCalcaEVagui)
+                cm.Property(c => c.TamanhoCamisaEVagui)
+                    .HasColumnName("Tamanho")
+                    .HasColumnType("Varchar(100)");
+
+                cm.Property(c => c.TamanhoCalcaShort)
                     .HasColumnName("TamanhoCalca")
                     .HasColumnType("Varchar(100)");
-            })
+            });
         }
     }
 }
