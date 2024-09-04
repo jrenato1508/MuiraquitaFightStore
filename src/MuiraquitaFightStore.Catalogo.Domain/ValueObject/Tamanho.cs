@@ -12,17 +12,17 @@ namespace MuiraquitaFightStore.Catalogo.Domain.ValueObject
     {
         public string TamanhoNumeracao { get; private set; }
 
-        public string TamanhoCamisaEVagui { get; private set; }
+        public string TamanhoCamisa { get; private set; }
 
-        public string TamanhoCalcaShort { get; private set; }
+        public string TamanhoShort { get; private set; }
 
         public string Peso { get; private set; }
 
         public Tamanho(string tamanhoNumeracao, string tamanhoCamisaEVagui, string tamanhoCalcaShort, string peso)
         {
             TamanhoNumeracao = tamanhoNumeracao;
-            TamanhoCamisaEVagui = tamanhoCamisaEVagui;
-            TamanhoCalcaShort = tamanhoCalcaShort;
+            TamanhoCamisa = tamanhoCamisaEVagui;
+            TamanhoShort = tamanhoCalcaShort;
             Peso = peso;
 
             Validar();
@@ -31,8 +31,8 @@ namespace MuiraquitaFightStore.Catalogo.Domain.ValueObject
         private void Validar()
         {
             Validacoes.ValidarSeVazio(TamanhoNumeracao, "O campo Numeração não pode estar vario");
-            Validacoes.ValidarSeVazio(TamanhoCamisaEVagui, "O campo Tamanho da Camisa não pode estar vario");
-            Validacoes.ValidarSeVazio(TamanhoCalcaShort, "O campo Tamanho da Calça  não pode estar vario");
+            Validacoes.ValidarSeVazio(TamanhoCamisa, "O campo Tamanho da Camisa não pode estar vario");
+            Validacoes.ValidarSeVazio(TamanhoShort, "O campo Tamanho da Calça  não pode estar vario");
             Validacoes.ValidarSeVazio(Peso, "O campo Peso não pode estar vazio");
         }
     }
