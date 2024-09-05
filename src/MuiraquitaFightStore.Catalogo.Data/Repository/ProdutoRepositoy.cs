@@ -50,25 +50,25 @@ namespace MuiraquitaFightStore.Catalogo.Data.Repository
         }
                 
                 
-        public void Adicionar(Produto produto)
+        public void AdicionarProduto(Produto produto)
         {
              _catalogoContext.Add(produto);
         }
 
 
-        public void Adicionar(Categoria categoria)
+        public void AdicionarCategoria(Categoria categoria)
         {
             _catalogoContext.Add(categoria);
         }
 
 
-        public void Atualizar(Produto produto)
+        public void AtualizarProduto(Produto produto)
         {
             _catalogoContext.Update(produto);
         }
 
 
-        public void Atualizar(Categoria categoria)
+        public void AtualizarCategoria(Categoria categoria)
         {
             _catalogoContext.Update(categoria);
         }

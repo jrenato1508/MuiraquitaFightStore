@@ -14,9 +14,9 @@ namespace MuiraquitaFightStore.Catalogo.Domain.Interfaces
         Task<Produto> ObterProdutoPorId(Guid id);
         Task<IEnumerable<Produto>> ObterPorCategoria(int codigo);
         Task<IEnumerable<Categoria>> ObterCategorias();
-        void Adicionar(Produto produto);
-        void Atualizar(Produto produto);
-        void Adicionar(Categoria categoria);
-        void Atualizar(Categoria categoria);
+        void AdicionarProduto(Produto produto);
+        void AtualizarProduto(Produto produto);
+        void AdicionarCategoria(Categoria categoria);
+        void AtualizarCategoria(Categoria categoria);
     }
 }

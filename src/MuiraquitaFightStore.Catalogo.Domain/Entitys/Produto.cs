@@ -51,6 +51,14 @@ namespace MuiraquitaFightStore.Catalogo.Domain.Entitys
         }
 
 
+        public void DebitarEstoque(int quantidade)
+        {
+            if (quantidade < 0) quantidade *= -1;
+            if (!PossuiEstoque(quantidade)) throw new DomainException("Estoque insuficiente");
+            QuantidadeEstoque -= quantidade;
+        }
+
+
         public void AlterarDescricao(string NovaDescricao)
         {
             Descricao = NovaDescricao;
