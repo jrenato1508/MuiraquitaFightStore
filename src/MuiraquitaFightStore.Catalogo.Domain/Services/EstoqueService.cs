@@ -26,7 +26,7 @@ namespace MuiraquitaFightStore.Catalogo.Domain.Services
 
             if(produto.QuantidadeEstoque < 10)
             {
-                //
+                // adicionar um evento.
             }
 
             _produtoRepository.AtualizarProduto(produto);
