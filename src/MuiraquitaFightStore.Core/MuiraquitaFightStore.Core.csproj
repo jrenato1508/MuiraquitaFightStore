@@ -9,7 +9,10 @@
     <Folder Include="Communication\Mediator\" />
     <Folder Include="DomainObject\DTO\" />
     <Folder Include="Extensions\" />
-    <Folder Include="Messages\CommonMessages\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MediatR" Version="12.4.1" />
   </ItemGroup>
 
 </Project>
