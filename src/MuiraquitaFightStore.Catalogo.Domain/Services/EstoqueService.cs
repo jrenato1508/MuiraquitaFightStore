@@ -1,4 +1,7 @@
-﻿using MuiraquitaFightStore.Catalogo.Domain.Interfaces;
+﻿using MediatR;
+using MuiraquitaFightStore.Catalogo.Domain.Events;
+using MuiraquitaFightStore.Catalogo.Domain.Interfaces;
+using MuiraquitaFightStore.Core.Communication.Mediator;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,10 +14,13 @@ namespace MuiraquitaFightStore.Catalogo.Domain.Services
     {
 
         private readonly IProdutoRepository _produtoRepository;
+        private readonly IMediatorHandler _mediator;
 
-        public EstoqueService(IProdutoRepository produtoRepository)
+        public EstoqueService(IProdutoRepository produtoRepository,
+                              IMediatorHandler mediator)
         {
             _produtoRepository = produtoRepository;
+            _mediator = mediator;
         }
 
         public async Task<bool> DebitarEstoque(Guid produtoId, int quantidade)
@@ -26,7 +32,7 @@ namespace MuiraquitaFightStore.Catalogo.Domain.Services
 
             if(produto.QuantidadeEstoque < 10)
             {
-                // adicionar um evento.
+               await _mediator.PublicarEvento(new ProdutoAbaixoEstoqueEvent(produtoId, produto.QuantidadeEstoque));
             }
 
             _produtoRepository.AtualizarProduto(produto);

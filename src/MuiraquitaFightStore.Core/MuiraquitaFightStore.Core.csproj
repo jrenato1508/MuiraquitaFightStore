@@ -6,7 +6,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Communication\Mediator\" />
     <Folder Include="DomainObject\DTO\" />
     <Folder Include="Extensions\" />
   </ItemGroup>

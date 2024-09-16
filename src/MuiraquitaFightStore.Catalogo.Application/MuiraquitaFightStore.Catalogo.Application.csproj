@@ -5,4 +5,13 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="13.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MuiraquitaFightStore.Catalogo.Data\MuiraquitaFightStore.Catalogo.Data.csproj" />
+    <ProjectReference Include="..\MuiraquitaFightStore.Catalogo.Domain\MuiraquitaFightStore.Catalogo.Domain.csproj" />
+  </ItemGroup>
+
 </Project>
