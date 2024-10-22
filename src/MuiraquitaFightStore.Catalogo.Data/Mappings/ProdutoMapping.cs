@@ -44,6 +44,10 @@ namespace MuiraquitaFightStore.Catalogo.Data.Mappings
                 cm.Property(c => c.TamanhoShort)
                     .HasColumnName("TamanhoCalca")
                     .HasColumnType("Varchar(100)");
+
+                cm.Property(c => c.Peso)
+                    .HasColumnName("Peso")
+                    .HasColumnType("Varchar(3)");
             });
 
             builder.ToTable("Produtos");
@@ -52,9 +56,3 @@ namespace MuiraquitaFightStore.Catalogo.Data.Mappings
 }
 
 
-/*
-   Terminar de configurar o mapeamento como banco de dados... Temos que pensar que a class produto vai representar todos os possiveis produtos a venda
-   logo nomes como TamanhoNumeraçao, TamanhoCalca e vagui não devem ser utilizados, visto que o kimono não será o único produto vendido na loga, logo
-   temos que separar e adicionar nomes mais genericos como Tamanho, Tamanho Camisa, Tamanho Calaça ou bermuda... vamos pensar mais sobre isso antes
-   de implementar.
- */

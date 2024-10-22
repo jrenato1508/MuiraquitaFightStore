@@ -39,15 +39,4 @@ namespace MuiraquitaFightStore.Catalogo.Domain.ValueObject
 
 }
 
-public enum TamanhoNumeracao
-{
-    Nenhum = 0,
-    A0,
-    A1,
-    A2,
-    A3,
-    A4,
-    A5,
-    A6,
 
-}

@@ -33,9 +33,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MuiraquitaFightStore.Pagame
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MuiraquitaFightStore.Pagamentos.AntiCorruption", "src\MuiraquitaFightStore.Pagamentos.AntiCorruption\MuiraquitaFightStore.Pagamentos.AntiCorruption.csproj", "{06D0113C-B454-4F37-979F-E2B1B6FDE300}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApp.Mvc", "src\WebApp.Mvc\WebApp.Mvc.csproj", "{CAF0DA1A-AF0E-48B7-8AFC-155EBC6D7AF9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MuiraquitaFightStore.WebApp.Mvc", "src\WebApp.Mvc\MuiraquitaFightStore.WebApp.Mvc.csproj", "{CAF0DA1A-AF0E-48B7-8AFC-155EBC6D7AF9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MuiraquitaFightStore.Core", "src\MuiraquitaFightStore.Core\MuiraquitaFightStore.Core.csproj", "{F081A4D8-6888-4F63-8047-75BD634F78B3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MuiraquitaFightStore.Core", "src\MuiraquitaFightStore.Core\MuiraquitaFightStore.Core.csproj", "{F081A4D8-6888-4F63-8047-75BD634F78B3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Pedidos", "Pedidos", "{9559D225-520A-4772-BF56-19BD7D22D044}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -107,6 +109,7 @@ Global
 		{06D0113C-B454-4F37-979F-E2B1B6FDE300} = {5BC57EBB-D224-4F77-B003-174485BFB7A1}
 		{CAF0DA1A-AF0E-48B7-8AFC-155EBC6D7AF9} = {8AD00E47-5352-47EE-8DF3-C621B0F64C98}
 		{F081A4D8-6888-4F63-8047-75BD634F78B3} = {4EE66C28-4958-4C99-B259-D4DD05C1DDBA}
+		{9559D225-520A-4772-BF56-19BD7D22D044} = {921614AC-F8BD-4D1F-A413-13479D753068}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D01D067F-7563-4127-94C9-6F6C22BD9419}
