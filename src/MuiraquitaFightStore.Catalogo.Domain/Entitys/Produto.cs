@@ -12,8 +12,10 @@ namespace MuiraquitaFightStore.Catalogo.Domain.Entitys
     public class Produto : Entity, IAggregateRoot
     {
         public Guid CategoriaId { get; private set; }
+        public Guid MarcaId { get; private set; }
         public string Nome { get; private set; }
         public string Descricao { get; private set; }
+        public Marca Marca { get; private set; }
         public bool Ativo { get; private set; }
         public decimal Valor { get; private set; }
         public DateTime DataCadastro { get; private set; }
@@ -24,9 +26,10 @@ namespace MuiraquitaFightStore.Catalogo.Domain.Entitys
         public Categoria Categoria { get; private set; }
 
 
-        public Produto(string nome, string descricao, bool ativo, decimal valor, Guid categoriaId, DateTime datacadastro, string imagem, Tamanho tamanho )
+        public Produto(string nome, string descricao, bool ativo, decimal valor, Guid categoriaId, Guid marcaId, DateTime datacadastro, string imagem, Tamanho tamanho )
         {
             CategoriaId = categoriaId;
+            MarcaId = marcaId;
             Nome = nome;
             Descricao = descricao;
             Ativo = ativo;
@@ -82,6 +85,7 @@ namespace MuiraquitaFightStore.Catalogo.Domain.Entitys
             Validacoes.ValidarSeVazio(Nome, "O campo Nome do produto não pode estar vazio");
             Validacoes.ValidarSeVazio(Descricao, "O campo Descrição do produto não pode estar vazio");
             Validacoes.ValidarSeIgual(CategoriaId, Guid.Empty, "O campo Categoria do produto não pode estar vazio");
+            Validacoes.ValidarSeIgual(MarcaId, Guid.Empty, "O campo Categoria do produto não pode estar vazio");
             Validacoes.ValidarSeMenorQue(Valor, 1, "O campo Valor do produto não pode se menor igual a 0");
             Validacoes.ValidarSeVazio(Imagem, "O campo de imagem do produto não pode estar vazio");
         }

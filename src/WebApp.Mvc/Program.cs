@@ -1,5 +1,8 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using MuiraquitaFightStore.Catalogo.Application.AutoMapper;
+using MuiraquitaFightStore.Catalogo.Data;
+using System.Reflection;
 using WebApp.Mvc.Configurations;
 using WebApp.Mvc.Data;
 
@@ -11,8 +14,16 @@ builder.Configuration
     .AddJsonFile($"appsettings.{builder.Environment.EnvironmentName}.json", true, true)
     .AddEnvironmentVariables();
 
-
 builder.Services.AddIdentityConfiguration(builder.Configuration);
+builder.Services.AddDbContext<CatalogoContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+
+
+builder.Services.AddAutoMapper(typeof(DomainToDtoMappingProfile), typeof(DtoToDomainMappingProfile));
+builder.Services.AddMediatR(a => a.RegisterServicesFromAssemblies(Assembly.GetExecutingAssembly()));
+
+
 builder.Services.AddMvcConfiguration();
 builder.Services.ResolveDependencies();
 
@@ -45,4 +56,4 @@ app.MapRazorPages();
 
 app.Run();
 
-// Parei no Item 9.
+// Parei no Item 9.8, mas antes de criar o banco, estou verificando se na class Produto tem tudo que vou precisar.
