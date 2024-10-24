@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using WebApp.Mvc.Extension.AspNetUser;
 using WebApp.Mvc.Models;
-using WebApp.Mvc.Models.Nofificacao;
 
 namespace WebApp.Mvc.Controllers
 {
@@ -13,8 +12,7 @@ namespace WebApp.Mvc.Controllers
         private readonly ILogger<HomeController> _logger;
 
         public HomeController(ILogger<HomeController> logger,
-                              INotificador notificador,
-                              IUser appUser) : base(notificador, appUser) 
+                              IUser appUser) : base( appUser) 
         {
             _logger = logger;
         }

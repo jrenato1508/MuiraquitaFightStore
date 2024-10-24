@@ -6,7 +6,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pages.Manage;
 using WebApp.Mvc.Extension.AspNetUser;
 using WebApp.Mvc.Extension.CustomAuthorization;
-using WebApp.Mvc.Models.Nofificacao;
 using WebApp.Mvc.Models.UserManagementPanelModels;
 using WebApp.Mvc.Models.UserManagementPanelModels.Authentication;
 
@@ -19,20 +18,17 @@ namespace WebApp.Mvc.Controllers.UserManagementPanelController
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
-        private readonly INotificador _notificador;
-        private readonly INotyfService _notify;
+                private readonly INotyfService _notify;
 
 
 
         public UserRolesController(UserManager<ApplicationUser> userManager,
                                    RoleManager<IdentityRole> roleManager,
-                                   INotificador notificador,
                                    IUser appUser,
-                                   INotyfService notyf) : base(notificador, appUser)
+                                   INotyfService notyf) : base(appUser)
         {
             _roleManager = roleManager;
             _userManager = userManager;
-            _notificador = notificador;
             _notify = notyf;
         }
 

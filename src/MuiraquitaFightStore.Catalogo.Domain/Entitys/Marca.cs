@@ -25,6 +25,8 @@ namespace MuiraquitaFightStore.Catalogo.Domain.Entitys
             Validar();
         }
 
+        protected Marca() { }
+
         public override string ToString()
         {
             return $"{Nome} - {Codigo}";

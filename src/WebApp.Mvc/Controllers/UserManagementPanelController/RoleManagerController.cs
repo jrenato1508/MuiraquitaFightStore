@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WebApp.Mvc.Extension.AspNetUser;
 using WebApp.Mvc.Extension.CustomAuthorization;
-using WebApp.Mvc.Models.Nofificacao;
 using WebApp.Mvc.Models.UserManagementPanelModels;
 
 namespace WebApp.Mvc.Controllers.UserManagementPanelController
@@ -20,8 +19,7 @@ namespace WebApp.Mvc.Controllers.UserManagementPanelController
 
         public RoleManagerController(RoleManager<IdentityRole> roleManager,
                                      UserManager<ApplicationUser> userManager,
-                                     IUser appUser,
-                                     INotificador notificador) : base(notificador, appUser)
+                                     IUser appUser) : base( appUser)
         {
             _roleManager = roleManager;
             _userManager = userManager;

@@ -20,6 +20,8 @@ namespace MuiraquitaFightStore.Catalogo.Application.AutoMapper
                 .ForMember(d => d.Peso, o => o.MapFrom(s => s.Tamanho.Peso));
 
             CreateMap<Categoria, CategoriaDto>();
+
+            CreateMap<Marca,MarcaDto>();
         }
     }
 }

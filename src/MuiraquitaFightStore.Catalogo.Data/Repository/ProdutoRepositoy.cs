@@ -48,8 +48,14 @@ namespace MuiraquitaFightStore.Catalogo.Data.Repository
             return await _catalogoContext.Categorias.AsNoTracking()
                                                     .ToListAsync();     
         }
-                
-                
+
+        public async Task<IEnumerable<Marca>> ObterMarcas()
+        {
+            return await _catalogoContext.Marcas.AsNoTracking()
+                                                    .ToListAsync();
+        }
+
+
         public void AdicionarProduto(Produto produto)
         {
              _catalogoContext.Add(produto);

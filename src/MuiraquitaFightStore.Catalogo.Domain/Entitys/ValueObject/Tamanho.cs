@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MuiraquitaFightStore.Catalogo.Domain.ValueObject
+namespace MuiraquitaFightStore.Catalogo.Domain.Entitys.ValueObject
 {
     public class Tamanho
     {
@@ -27,6 +27,8 @@ namespace MuiraquitaFightStore.Catalogo.Domain.ValueObject
 
             Validar();
         }
+
+        protected Tamanho() { }
 
         private void Validar()
         {

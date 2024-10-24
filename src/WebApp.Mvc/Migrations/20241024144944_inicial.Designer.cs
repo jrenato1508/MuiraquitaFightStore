@@ -9,10 +9,10 @@ using WebApp.Mvc.Data;
 
 #nullable disable
 
-namespace WebApp.Mvc.Migrations
+namespace MuiraquitaFightStore.WebApp.Mvc.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240721182528_inicial")]
+    [Migration("20241024144944_inicial")]
     partial class inicial
     {
         /// <inheritdoc />
@@ -21,7 +21,7 @@ namespace WebApp.Mvc.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasDefaultSchema("Identity")
-                .HasAnnotation("ProductVersion", "8.0.7")
+                .HasAnnotation("ProductVersion", "8.0.8")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -163,7 +163,7 @@ namespace WebApp.Mvc.Migrations
                     b.ToTable("UserTokens", "Identity");
                 });
 
-            modelBuilder.Entity("WebApp.Mvc.Models.ApplicationUser", b =>
+            modelBuilder.Entity("WebApp.Mvc.Models.UserManagementPanelModels.ApplicationUser", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
@@ -251,7 +251,7 @@ namespace WebApp.Mvc.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("WebApp.Mvc.Models.ApplicationUser", null)
+                    b.HasOne("WebApp.Mvc.Models.UserManagementPanelModels.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -260,7 +260,7 @@ namespace WebApp.Mvc.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("WebApp.Mvc.Models.ApplicationUser", null)
+                    b.HasOne("WebApp.Mvc.Models.UserManagementPanelModels.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -275,7 +275,7 @@ namespace WebApp.Mvc.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("WebApp.Mvc.Models.ApplicationUser", null)
+                    b.HasOne("WebApp.Mvc.Models.UserManagementPanelModels.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -284,7 +284,7 @@ namespace WebApp.Mvc.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("WebApp.Mvc.Models.ApplicationUser", null)
+                    b.HasOne("WebApp.Mvc.Models.UserManagementPanelModels.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)

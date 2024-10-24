@@ -34,15 +34,15 @@ namespace MuiraquitaFightStore.Catalogo.Data.Mappings
             builder.OwnsOne(c => c.Tamanho, cm =>
             {
                 cm.Property(c => c.TamanhoNumeracao)
-                    .HasColumnName("Tamanho")
+                    .HasColumnName("TamanhoNumeracao")
                     .HasColumnType("Varchar(100)");
 
                 cm.Property(c => c.TamanhoCamisa)
-                    .HasColumnName("Tamanho")
+                    .HasColumnName("TamanhoCamisa")
                     .HasColumnType("Varchar(100)");
 
                 cm.Property(c => c.TamanhoShort)
-                    .HasColumnName("TamanhoCalca")
+                    .HasColumnName("TamanhoShort")
                     .HasColumnType("Varchar(100)");
 
                 cm.Property(c => c.Peso)

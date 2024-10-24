@@ -1,4 +1,4 @@
-﻿using MuiraquitaFightStore.Catalogo.Domain.ValueObject;
+﻿using MuiraquitaFightStore.Catalogo.Domain.Entitys.ValueObject;
 using MuiraquitaFightStore.Core.DomainObject;
 using MuiraquitaFightStore.Core.DomainObject.AssertionConcem;
 using System;
@@ -15,7 +15,6 @@ namespace MuiraquitaFightStore.Catalogo.Domain.Entitys
         public Guid MarcaId { get; private set; }
         public string Nome { get; private set; }
         public string Descricao { get; private set; }
-        public Marca Marca { get; private set; }
         public bool Ativo { get; private set; }
         public decimal Valor { get; private set; }
         public DateTime DataCadastro { get; private set; }
@@ -24,6 +23,7 @@ namespace MuiraquitaFightStore.Catalogo.Domain.Entitys
         public string Cor { get; set; }
         public Tamanho Tamanho { get; private set; }
         public Categoria Categoria { get; private set; }
+        public Marca Marca { get; private set; }
 
 
         public Produto(string nome, string descricao, bool ativo, decimal valor, Guid categoriaId, Guid marcaId, DateTime datacadastro, string imagem, Tamanho tamanho )

@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using WebApp.Mvc.Extension.AspNetUser;
-using WebApp.Mvc.Models.Nofificacao;
 using WebApp.Mvc.Models.UserManagementPanelModels;
 
 namespace WebApp.Mvc.Controllers.UserManagementPanelController
@@ -13,8 +12,7 @@ namespace WebApp.Mvc.Controllers.UserManagementPanelController
         private readonly UserManager<ApplicationUser> _userManager;
 
         public UserClaimsController(UserManager<ApplicationUser> userManager,
-                                    INotificador notificador,
-                                    IUser appUser) : base(notificador, appUser)
+                                    IUser appUser) : base( appUser)
         {
             _userManager = userManager;
         }

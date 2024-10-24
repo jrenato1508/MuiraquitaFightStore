@@ -17,7 +17,9 @@ namespace MuiraquitaFightStore.Catalogo.Application.Service
 
         Task<IEnumerable<CategoriaDto>> ObterCategorias();
 
-        Task Adicionar(ProdutoDto produtoViewModel);
+        Task<IEnumerable<MarcaDto>> ObterMarcas();
+
+        Task AdicionarProduto(ProdutoDto produtoViewModel);
 
         Task AtualizarProduto(ProdutoDto produtoViewModel);
 

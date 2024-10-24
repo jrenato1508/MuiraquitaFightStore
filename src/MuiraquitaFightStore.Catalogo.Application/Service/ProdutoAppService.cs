@@ -16,6 +16,14 @@ namespace MuiraquitaFightStore.Catalogo.Application.Service
         private readonly IProdutoRepository _produtoRepository;
         private readonly IEstoqueService _estoqueService;
         private readonly IMapper _mapper;
+        public ProdutoAppService(IProdutoRepository produtorepository,
+                                 IEstoqueService estoqueService,
+                                 IMapper maper)
+        {
+            _produtoRepository = produtorepository;
+            _estoqueService = estoqueService;
+            _mapper = maper;
+        }
 
         public async Task<IEnumerable<ProdutoDto>> ObterTodos()
         {
@@ -25,6 +33,11 @@ namespace MuiraquitaFightStore.Catalogo.Application.Service
         public async Task<IEnumerable<CategoriaDto>> ObterCategorias()
         {
             return _mapper.Map<IEnumerable<CategoriaDto>>(await _produtoRepository.ObterCategorias());
+        }
+
+        public async Task<IEnumerable<MarcaDto>> ObterMarcas()
+        {
+            return _mapper.Map<IEnumerable<MarcaDto>>(await _produtoRepository.ObterMarcas());
         }
 
         public async Task<IEnumerable<ProdutoDto>> ObterPorCategoria(int codigo)
@@ -37,9 +50,11 @@ namespace MuiraquitaFightStore.Catalogo.Application.Service
             return _mapper.Map<ProdutoDto>(await _produtoRepository.ObterProdutoPorId(id));
         }
 
-        public Task Adicionar(ProdutoDto produtoViewModel)
+        public async Task AdicionarProduto(ProdutoDto produtoViewModel)
         {
-            throw new NotImplementedException();
+            var produdo = _mapper.Map<Produto>(produtoViewModel);
+            _produtoRepository.AdicionarProduto(produdo);
+            await _produtoRepository.UnitOfWork.Commit();
         }
 
         public async Task AtualizarProduto(ProdutoDto produtoViewModel)
@@ -74,5 +89,7 @@ namespace MuiraquitaFightStore.Catalogo.Application.Service
             _produtoRepository?.Dispose();
             _estoqueService?.Dispose();
         }
+
+        
     }
 }

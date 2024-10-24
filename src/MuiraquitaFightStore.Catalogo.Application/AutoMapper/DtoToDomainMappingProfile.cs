@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using MuiraquitaFightStore.Catalogo.Application.DTOs;
 using MuiraquitaFightStore.Catalogo.Domain.Entitys;
-using MuiraquitaFightStore.Catalogo.Domain.ValueObject;
+using MuiraquitaFightStore.Catalogo.Domain.Entitys.ValueObject;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,11 +17,14 @@ namespace MuiraquitaFightStore.Catalogo.Application.AutoMapper
             CreateMap<ProdutoDto, Produto>()
                 .ConstructUsing(p =>
                     new Produto(p.Nome, p.Descricao, p.Ativo,
-                                p.Valor, p.CategoriaId, p.DataCadastro,
+                                p.Valor, p.CategoriaId,p.MarcaId, p.DataCadastro,
                                 p.Imagem, new Tamanho(p.TamanhoNumeracao, p.TamanhoCamisa, p.TamanhoShort, p.Peso)));
 
             CreateMap<CategoriaDto, Categoria>()
                 .ConstructUsing(c => new Categoria(c.Nome, c.Codigo));
+
+            CreateMap<MarcaDto, Marca>()
+                .ConstructUsing(c => new Marca(c.Nome, c.Codigo));
         }
     }
 }

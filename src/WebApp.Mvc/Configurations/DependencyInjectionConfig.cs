@@ -5,9 +5,10 @@ using MuiraquitaFightStore.Catalogo.Data;
 using MuiraquitaFightStore.Catalogo.Data.Repository;
 using MuiraquitaFightStore.Catalogo.Domain.Events;
 using MuiraquitaFightStore.Catalogo.Domain.Interfaces;
+using MuiraquitaFightStore.Catalogo.Domain.Services;
 using MuiraquitaFightStore.Core.Communication.Mediator;
 using WebApp.Mvc.Extension.AspNetUser;
-using WebApp.Mvc.Models.Nofificacao;
+
 
 namespace WebApp.Mvc.Configurations
 {
@@ -16,7 +17,7 @@ namespace WebApp.Mvc.Configurations
         public static IServiceCollection ResolveDependencies(this IServiceCollection services)
         {
             
-            services.AddScoped<INotificador, Notificador>();
+            
             services.AddScoped<IUser,AspNetUser>();
             services.AddScoped<IMediatorHandler, MediatrHandler>();
 
@@ -24,7 +25,7 @@ namespace WebApp.Mvc.Configurations
             #region CONTEXT DE CATALAGO
             services.AddScoped<IProdutoRepository, ProdutoRepositoy>();
             services.AddScoped<IProdutoAppService, ProdutoAppService>();
-            services.AddScoped<IProdutoAppService, ProdutoAppService>();
+            services.AddScoped<IEstoqueService, EstoqueService>();
             services.AddScoped<CatalogoContext>();
 
             services.AddScoped<INotificationHandler<ProdutoAbaixoEstoqueEvent>, ProdutoEventHandler>();

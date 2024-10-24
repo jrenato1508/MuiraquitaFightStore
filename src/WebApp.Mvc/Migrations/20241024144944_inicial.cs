@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace WebApp.Mvc.Migrations
+namespace MuiraquitaFightStore.WebApp.Mvc.Migrations
 {
     /// <inheritdoc />
     public partial class inicial : Migration

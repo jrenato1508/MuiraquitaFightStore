@@ -1,4 +1,5 @@
 ﻿
+using MuiraquitaFightStore.Catalogo.Domain.Entitys;
 using System.ComponentModel.DataAnnotations;
 
 
@@ -11,6 +12,9 @@ namespace MuiraquitaFightStore.Catalogo.Application.DTOs
 
         [Required(ErrorMessage = "O campo {0} é obrigatório")]
         public Guid CategoriaId { get; set; }
+        
+        [Required(ErrorMessage = "O campo {0} é obrigatório")]
+        public Guid MarcaId { get; set; }
 
         [Required(ErrorMessage = "O campo {0} é obrigatório")]
         public string Nome { get; set; }
@@ -35,10 +39,10 @@ namespace MuiraquitaFightStore.Catalogo.Application.DTOs
         public int QuantidadeEstoque { get; set; }
 
         [Required(ErrorMessage = "O campo {0} é obrigatório")]
-        public string TamanhoNumeracao { get; set; }
-        
-        [Required(ErrorMessage = "O campo {0} é obrigatório")]
         public string Cor {  get; set; }
+
+        [Required(ErrorMessage = "O campo {0} é obrigatório")]
+        public string TamanhoNumeracao { get; set; }
 
         [Required(ErrorMessage = "O campo {0} é obrigatório")]
         public string TamanhoCamisa { get; set; }
@@ -50,7 +54,11 @@ namespace MuiraquitaFightStore.Catalogo.Application.DTOs
         [Required(ErrorMessage = "O campo {0} é obrigatório")]
         public string Peso { get; private set; }
 
+
+
         // Como produto possui uma categoria vamos precisar listar essas categorias então vamos carregar essa lista aqui dentro
         public IEnumerable<CategoriaDto>? Categorias { get; set; }
+        
+        public IEnumerable<MarcaDto>? Marcas { get; set; }
     }
 }
