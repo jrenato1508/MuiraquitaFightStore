@@ -9,8 +9,19 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="NovoProduto">
+        <form asp-action="AdicionarProduto">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <label asp-for="ImagemUpload" class="control-label">Adicione uma foto</label>
+
+                <div class="input-group mb-3">
+                    <input type="file" class="form-control" id="ImagemUpLoad" asp-for="ImagemUpload" />
+                    <label stye="display:none" id="img_none"></label>
+                </div>
+
+                <span asp-validation-for="ImagemUpload" class="text-danger"></span>
+            </div>
 
             <div class="form-group">
                 <label class="control-label">Selecione a Categoria</label>
@@ -51,11 +62,11 @@
                 <span asp-validation-for="Valor" class="text-danger"></span>
             </div>
 
-            <div class="form-group">
+          @*   <div class="form-group">
                 <label asp-for="Imagem" class="control-label"></label>
                 <input asp-for="Imagem" class="form-control" />
                 <span asp-validation-for="Imagem" class="text-danger"></span>
-            </div>
+            </div> *@
 
             <div class="form-group">
                 <label asp-for="QuantidadeEstoque" class="control-label"></label>

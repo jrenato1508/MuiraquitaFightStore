@@ -31,7 +31,8 @@ namespace MuiraquitaFightStore.Catalogo.Application.DTOs
         [Required(ErrorMessage = "O campo {0} é obrigatório")]
         public DateTime DataCadastro { get; set; }
 
-        [Required(ErrorMessage = "O campo {0} é obrigatório")]
+        //public For ImagemUpload { get; set; }
+        
         public string Imagem { get; set; }
 
         [Range(1, int.MaxValue, ErrorMessage = "O campo {0} precisa ter o valor mínimo de {1}")]
@@ -52,7 +53,7 @@ namespace MuiraquitaFightStore.Catalogo.Application.DTOs
 
         [Range(40, int.MaxValue, ErrorMessage = "O campo {0} precisa ter o valor mínimo de {1}")]
         [Required(ErrorMessage = "O campo {0} é obrigatório")]
-        public string Peso { get; private set; }
+        public string Peso { get; set; }
 
 
 

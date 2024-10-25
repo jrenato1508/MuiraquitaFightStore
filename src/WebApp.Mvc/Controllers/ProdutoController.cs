@@ -35,8 +35,18 @@ namespace MuiraquitaFightStore.WebApp.Mvc.Controllers
         public async Task<IActionResult> AdicionarProduto(ProdutoDto produto)
         {
             if(!ModelState.IsValid) return View(await PopularCategoriaMarca(produto));
+            
+            //var imgPrefixo = Guid.NewGuid() + "_";
+            //if (!UploadArquivo(produto.ImagemUpload, imgPrefixo))
+            //{
+            //    return View("Index");
+            //}
+            //produto.Imagem = imgPrefixo + produto.ImagemUpload.ToString();
+
             await _produtoAppService.AdicionarProduto(produto);
-            return View("Index");
+
+            
+            return RedirectToAction("Index");
         }
 
 
@@ -96,5 +106,20 @@ namespace MuiraquitaFightStore.WebApp.Mvc.Controllers
 
             return produto;
         }
+
+
+        //private bool UploadArquivo(string arquivo, string imgPrefixo)
+        //{
+        //    if(string.IsNullOrEmpty(arquivo)) return false;
+
+        //    var imageDataByteArray = Convert.FromBase64String(arquivo);
+        //    var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/imagens", imgPrefixo);
+
+        //    if(System.IO.File.Exists(filePath)) return false;
+
+        //    System.IO.File.WriteAllBytes(filePath, imageDataByteArray);
+
+        //    return true;
+        //}
     }
 }
