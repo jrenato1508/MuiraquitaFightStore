@@ -102,6 +102,8 @@ namespace MuiraquitaFightStore.Catalogo.Data.Migrations
 
                     b.HasIndex("CategoriaId");
 
+                    b.HasIndex("MarcaId");
+
                     b.ToTable("Produtos", (string)null);
                 });
 
@@ -115,11 +117,11 @@ namespace MuiraquitaFightStore.Catalogo.Data.Migrations
 
                     b.HasOne("MuiraquitaFightStore.Catalogo.Domain.Entitys.Marca", "Marca")
                         .WithMany("Produtos")
-                        .HasForeignKey("CategoriaId")
+                        .HasForeignKey("MarcaId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.OwnsOne("MuiraquitaFightStore.Catalogo.Domain.Entitys.Produto.Tamanho#MuiraquitaFightStore.Catalogo.Domain.Entitys.ValueObject.Tamanho", "Tamanho", b1 =>
+                    b.OwnsOne("MuiraquitaFightStore.Catalogo.Domain.Entitys.ValueObject.Tamanho", "Tamanho", b1 =>
                         {
                             b1.Property<Guid>("ProdutoId")
                                 .HasColumnType("uniqueidentifier");
@@ -142,7 +144,7 @@ namespace MuiraquitaFightStore.Catalogo.Data.Migrations
 
                             b1.HasKey("ProdutoId");
 
-                            b1.ToTable("Produtos", (string)null);
+                            b1.ToTable("Produtos");
 
                             b1.WithOwner()
                                 .HasForeignKey("ProdutoId");

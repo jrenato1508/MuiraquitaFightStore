@@ -24,7 +24,7 @@ namespace MuiraquitaFightStore.Catalogo.Data.Mappings
 
             builder.HasMany(c => c.Produtos)
                 .WithOne(p => p.Marca)
-                .HasForeignKey(p => p.CategoriaId);
+                .HasForeignKey(p => p.MarcaId);
 
             builder.ToTable("Marcas");
         }

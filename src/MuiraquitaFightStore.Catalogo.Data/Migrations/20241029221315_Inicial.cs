@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace MuiraquitaFightStore.Catalogo.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class inicial : Migration
+    public partial class Inicial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -67,8 +67,8 @@ namespace MuiraquitaFightStore.Catalogo.Data.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Produtos_Marcas_CategoriaId",
-                        column: x => x.CategoriaId,
+                        name: "FK_Produtos_Marcas_MarcaId",
+                        column: x => x.MarcaId,
                         principalTable: "Marcas",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -78,6 +78,11 @@ namespace MuiraquitaFightStore.Catalogo.Data.Migrations
                 name: "IX_Produtos_CategoriaId",
                 table: "Produtos",
                 column: "CategoriaId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Produtos_MarcaId",
+                table: "Produtos",
+                column: "MarcaId");
         }
 
         /// <inheritdoc />

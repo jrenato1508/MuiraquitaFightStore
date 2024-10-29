@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MuiraquitaFightStore.Catalogo.Application.DTOs;
 using MuiraquitaFightStore.Catalogo.Application.Service;
+using MuiraquitaFightStore.WebApp.Mvc.Models.ViewModels;
 
 namespace MuiraquitaFightStore.WebApp.Mvc.Controllers
 {
@@ -26,36 +27,38 @@ namespace MuiraquitaFightStore.WebApp.Mvc.Controllers
         [Route("Novo-Produto")]
         public async Task<IActionResult> AdicionarProduto()
         {
-            return View(await PopularCategoriaMarca(new ProdutoDto()));
+            return View(await PopularCategoriaMarca(new ProdutoViewModel()));
         }
 
 
         [Route("Novo-Produto")]
         [HttpPost]
-        public async Task<IActionResult> AdicionarProduto(ProdutoDto produto)
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> AdicionarProduto(ProdutoViewModel produto)
         {
-            if(!ModelState.IsValid) return View(await PopularCategoriaMarca(produto));
-            
-            //var imgPrefixo = Guid.NewGuid() + "_";
-            //if (!UploadArquivo(produto.ImagemUpload, imgPrefixo))
-            //{
-            //    return View("Index");
-            //}
-            //produto.Imagem = imgPrefixo + produto.ImagemUpload.ToString();
 
-            await _produtoAppService.AdicionarProduto(produto);
+            if(!ModelState.IsValid) return View(await PopularCategoriaMarca(produto));
+
+            var imgPrefixo = Guid.NewGuid() + "_";
+            if (!await UploadArquivo(produto.ImagemUpload, imgPrefixo))
+            {
+                return View("Index");
+            }
+            produto.Imagem = imgPrefixo + produto.ImagemUpload.FileName;
+
+            await _produtoAppService.AdicionarProduto(ConverterProdutoDto(produto));
 
             
             return RedirectToAction("Index");
         }
 
 
-        [HttpGet]
-        [Route("editar-produto")]
-        public async Task<IActionResult> AtualizarProduto(Guid id)
-        {
-            return View(await PopularCategoriaMarca(await _produtoAppService.ObterProdutoPorId(id)));
-        }
+        //[HttpGet]
+        //[Route("editar-produto")]
+        //public async Task<IActionResult> AtualizarProduto(Guid id)
+        //{
+        //    return View(await PopularCategoriaMarca(await _produtoAppService.ObterProdutoPorId(id)));
+        //}
 
 
 
@@ -66,8 +69,8 @@ namespace MuiraquitaFightStore.WebApp.Mvc.Controllers
             var produto = await _produtoAppService.ObterProdutoPorId(id);
             produtoViewModel.QuantidadeEstoque = produto.QuantidadeEstoque;
 
-            ModelState.Remove("QuantidadeEstoque");
-            if (!ModelState.IsValid) return View(await PopularCategoriaMarca(produtoViewModel));
+            //ModelState.Remove("QuantidadeEstoque");
+            //if (!ModelState.IsValid) return View(await PopularCategoriaMarca(produtoViewModel));
 
             await _produtoAppService.AtualizarProduto(produtoViewModel);
 
@@ -99,27 +102,71 @@ namespace MuiraquitaFightStore.WebApp.Mvc.Controllers
             return View("Index", await _produtoAppService.ObterTodos());
         }
 
-        private async Task<ProdutoDto> PopularCategoriaMarca(ProdutoDto produto)
+        private async Task<ProdutoViewModel> PopularCategoriaMarca(ProdutoViewModel produtoView)
         {
+            ProdutoDto produto = new ProdutoDto();
             produto.Categorias = await _produtoAppService.ObterCategorias();
             produto.Marcas = await _produtoAppService.ObterMarcas();
+            produtoView.Categorias = produto.Categorias;
+            produtoView.Marcas = produto.Marcas;
+                        
+            return produtoView;
+        }
+        
+        private ProdutoDto ConverterProdutoDto(ProdutoViewModel produtoViewModel)
+        {
+            ProdutoDto Produto = new ProdutoDto
+            {
+                CategoriaId = produtoViewModel.CategoriaId,
+                MarcaId = produtoViewModel.MarcaId,
+                Nome = produtoViewModel.Nome,
+                Descricao = produtoViewModel.Descricao,
+                Ativo = produtoViewModel.Ativo,
+                Valor = produtoViewModel.Valor,
+                Imagem = produtoViewModel.Imagem,
+                QuantidadeEstoque = produtoViewModel.QuantidadeEstoque,
+                Cor = produtoViewModel.Cor,
+                TamanhoNumeracao = produtoViewModel?.TamanhoNumeracao,
+                TamanhoCamisa = produtoViewModel?.TamanhoCamisa,
+                TamanhoShort = produtoViewModel?.TamanhoShort, 
+                Peso = produtoViewModel?.Peso
+                                
+            };
 
-            return produto;
+            return Produto;
         }
 
+        private async Task<bool> UploadArquivo(IFormFile arquivo, string imgPrefixo)
+        {
+            if (arquivo.Length <= 0) return false;
 
-        //private bool UploadArquivo(string arquivo, string imgPrefixo)
-        //{
-        //    if(string.IsNullOrEmpty(arquivo)) return false;
+            var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/imagens", imgPrefixo + arquivo.FileName);
+            
+            if (System.IO.File.Exists(filePath)) return false; // adicionar uma mensagem de erro. um customresponse
 
-        //    var imageDataByteArray = Convert.FromBase64String(arquivo);
-        //    var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/imagens", imgPrefixo);
+            using (var steam = new FileStream(filePath, FileMode.Create))
+            {
+                await arquivo.CopyToAsync(steam);
+            }
 
-        //    if(System.IO.File.Exists(filePath)) return false;
+            return true;
 
-        //    System.IO.File.WriteAllBytes(filePath, imageDataByteArray);
+            
+        }
 
-        //    return true;
-        //}
+        private async Task<IEnumerable<ProdutoViewModel>> ObterListaProduto()
+        {
+            var produtos = await _produtoAppService.ObterTodos();
+
+            return produtos.Select(o => new ProdutoViewModel
+            {
+                Id = o.Id,
+                no
+            }
+
+            // Terminar a conversão da lista para produtoviewmodel
+
+            return comp
+        }
     }
 }

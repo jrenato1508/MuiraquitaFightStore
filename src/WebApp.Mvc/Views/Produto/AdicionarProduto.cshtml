@@ -1,4 +1,4 @@
-﻿@model MuiraquitaFightStore.Catalogo.Application.DTOs.ProdutoDto
+﻿@model MuiraquitaFightStore.WebApp.Mvc.Models.ViewModels.ProdutoViewModel
 
 @{
     ViewData["Title"] = "NovoProduto";
@@ -9,7 +9,7 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="AdicionarProduto">
+        <form enctype="multipart/form-data" asp-action="AdicionarProduto">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
             <div class="form-group">

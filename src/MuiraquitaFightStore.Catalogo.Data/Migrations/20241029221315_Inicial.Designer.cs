@@ -12,8 +12,8 @@ using MuiraquitaFightStore.Catalogo.Data;
 namespace MuiraquitaFightStore.Catalogo.Data.Migrations
 {
     [DbContext(typeof(CatalogoContext))]
-    [Migration("20241024150135_inicial")]
-    partial class inicial
+    [Migration("20241029221315_Inicial")]
+    partial class Inicial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -105,6 +105,8 @@ namespace MuiraquitaFightStore.Catalogo.Data.Migrations
 
                     b.HasIndex("CategoriaId");
 
+                    b.HasIndex("MarcaId");
+
                     b.ToTable("Produtos", (string)null);
                 });
 
@@ -118,7 +120,7 @@ namespace MuiraquitaFightStore.Catalogo.Data.Migrations
 
                     b.HasOne("MuiraquitaFightStore.Catalogo.Domain.Entitys.Marca", "Marca")
                         .WithMany("Produtos")
-                        .HasForeignKey("CategoriaId")
+                        .HasForeignKey("MarcaId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
