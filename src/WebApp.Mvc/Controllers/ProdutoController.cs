@@ -20,7 +20,7 @@ namespace MuiraquitaFightStore.WebApp.Mvc.Controllers
         [Route("Listar-Produtos")]
         public async Task<IActionResult> Index()
         {
-           return View(await _produtoAppService.ObterTodos());
+           return View(await ObterListaProduto());
         }
 
 
@@ -161,12 +161,25 @@ namespace MuiraquitaFightStore.WebApp.Mvc.Controllers
             return produtos.Select(o => new ProdutoViewModel
             {
                 Id = o.Id,
-                no
-            }
+                CategoriaId = o.CategoriaId,
+                MarcaId = o.MarcaId,
+                Nome = o.Nome,
+                Descricao = o.Descricao,
+                Ativo = o.Ativo,
+                Valor = o.Valor,
+                DataCadastro = o.DataCadastro,
+                Imagem = o.Imagem,
+                QuantidadeEstoque = o.QuantidadeEstoque,
+                Cor = o.Cor,
+                TamanhoNumeracao = o.TamanhoNumeracao,
+                TamanhoCamisa = o.TamanhoCamisa,
+                TamanhoShort = o.TamanhoShort,
+                Peso = o.Peso
+            });
 
             // Terminar a conversão da lista para produtoviewmodel
 
-            return comp
+            
         }
     }
 }
