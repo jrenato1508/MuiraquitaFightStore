@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MuiraquitaFightStore.Catalogo.Application.DTOs;
 using MuiraquitaFightStore.Catalogo.Application.Service;
+using MuiraquitaFightStore.Catalogo.Domain.Entitys;
 using MuiraquitaFightStore.WebApp.Mvc.Models.ViewModels;
 
 namespace MuiraquitaFightStore.WebApp.Mvc.Controllers
@@ -46,33 +47,34 @@ namespace MuiraquitaFightStore.WebApp.Mvc.Controllers
             }
             produto.Imagem = imgPrefixo + produto.ImagemUpload.FileName;
 
-            await _produtoAppService.AdicionarProduto(ConverterProdutoDto(produto));
+            await _produtoAppService.AdicionarProduto(ConverterParaProdutoDto(produto));
 
             
             return RedirectToAction("Index");
         }
 
 
-        //[HttpGet]
-        //[Route("editar-produto")]
-        //public async Task<IActionResult> AtualizarProduto(Guid id)
-        //{
-        //    return View(await PopularCategoriaMarca(await _produtoAppService.ObterProdutoPorId(id)));
-        //}
+        [HttpGet]
+        [Route("editar-produto")]
+        public async Task<IActionResult> AtualizarProduto(Guid id)
+        {
+            var produto = ConverterParaProdutoViewModel(await _produtoAppService.ObterProdutoPorId(id));
+            return View(await PopularCategoriaMarca(produto));
+        }
 
-
+        // Testar a action de atualizar produto
 
         [HttpPost]
         [Route("editar-produto")]
-        public async Task<IActionResult> AtualizarProduto(Guid id, ProdutoDto produtoViewModel)
+        public async Task<IActionResult> AtualizarProduto(Guid id, ProdutoViewModel produtoViewModel)
         {
             var produto = await _produtoAppService.ObterProdutoPorId(id);
             produtoViewModel.QuantidadeEstoque = produto.QuantidadeEstoque;
 
-            //ModelState.Remove("QuantidadeEstoque");
-            //if (!ModelState.IsValid) return View(await PopularCategoriaMarca(produtoViewModel));
+            ModelState.Remove("QuantidadeEstoque");
+            if (!ModelState.IsValid) return View(await PopularCategoriaMarca(produtoViewModel));
 
-            await _produtoAppService.AtualizarProduto(produtoViewModel);
+            await _produtoAppService.AtualizarProduto(ConverterParaProdutoDto(produtoViewModel));
 
             return RedirectToAction("Index");
         }
@@ -113,7 +115,7 @@ namespace MuiraquitaFightStore.WebApp.Mvc.Controllers
             return produtoView;
         }
         
-        private ProdutoDto ConverterProdutoDto(ProdutoViewModel produtoViewModel)
+        private ProdutoDto ConverterParaProdutoDto(ProdutoViewModel produtoViewModel)
         {
             ProdutoDto Produto = new ProdutoDto
             {
@@ -135,6 +137,31 @@ namespace MuiraquitaFightStore.WebApp.Mvc.Controllers
 
             return Produto;
         }
+
+
+        private ProdutoViewModel ConverterParaProdutoViewModel(ProdutoDto produtoDto)
+        {
+            ProdutoViewModel Produto = new ProdutoViewModel 
+            {
+                CategoriaId = produtoDto.CategoriaId,
+                MarcaId = produtoDto.MarcaId,
+                Nome = produtoDto.Nome,
+                Descricao = produtoDto.Descricao,
+                Ativo = produtoDto.Ativo,
+                Valor = produtoDto.Valor,
+                Imagem = produtoDto.Imagem,
+                QuantidadeEstoque = produtoDto.QuantidadeEstoque,
+                Cor = produtoDto.Cor,
+                TamanhoNumeracao = produtoDto?.TamanhoNumeracao,
+                TamanhoCamisa = produtoDto?.TamanhoCamisa,
+                TamanhoShort = produtoDto?.TamanhoShort,
+                Peso = produtoDto?.Peso
+
+            };
+
+            return Produto;
+        }
+
 
         private async Task<bool> UploadArquivo(IFormFile arquivo, string imgPrefixo)
         {
